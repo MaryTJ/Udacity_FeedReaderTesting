@@ -22,7 +22,7 @@ $(function() {
          * page?
          */
         it('are defined', function() {
-            expect(allFeeds).toBeDefined();
+            expect(allFeeds).toBeDefined(); 
             expect(allFeeds.length).not.toBe(0);
         });
 
@@ -35,8 +35,8 @@ $(function() {
         
         it('url defined and not empty',function() {
             allFeeds.forEach(function(element) {
-                expect(element.url).toBeDefined();
-                expect(element.url.length).not.toBe(0);
+                expect(element.url).toBeDefined(); //Check to see if url is defined
+                expect(element.url.length).not.toBe(0); //Check to see if url exists and is not empty
             });
         });
 
@@ -47,8 +47,8 @@ $(function() {
 
         it('name defined and not empty',function() {
             allFeeds.forEach(function(element) {
-                expect(element.name).toBeDefined();
-                expect(element.name.length).not.toBe(0);
+                expect(element.name).toBeDefined(); //Check to see if name is defined
+                expect(element.name.length).not.toBe(0); //Check to see if the name is not empty
             });
         });
 
@@ -63,9 +63,7 @@ $(function() {
          * hiding/showing of the menu element.
          */
         it('menu should be hidden',function() {
-            let hiddenClass = document.getElementsByTagName('body')[0].className;
-            //console.log(hiddenClass);
-            //expect(hiddenClass.length).not.toBe(0);
+            let hiddenClass = document.getElementsByTagName('body')[0].className; //Check if menu is hidden by default usinh the menu-hidden class
             expect(hiddenClass).toEqual('menu-hidden');
         }); 
          /* TODO: Write a test that ensures the menu changes
@@ -77,13 +75,13 @@ $(function() {
             let menuIcon = document.getElementsByClassName('menu-icon-link');
             let hiddenClass = document.getElementsByTagName('body')[0].className;
             
-            $(menuIcon).click();
+            $(menuIcon).click(); //simulating clicking of the menu.
             hiddenClass = document.getElementsByTagName('body')[0].className;
-            expect(hiddenClass).not.toEqual('menu-hidden');
+            expect(hiddenClass).not.toEqual('menu-hidden'); //Check to ensure menu item is visible at the click
             
-            $(menuIcon).click();
+            $(menuIcon).click(); //simulating clicking of the menu.
             hiddenClass = document.getElementsByTagName('body')[0].className;
-            expect(hiddenClass).toEqual('menu-hidden');
+            expect(hiddenClass).toEqual('menu-hidden'); //Check to ensure menu item is hidden if clicked again
             
         });
 
@@ -100,17 +98,17 @@ $(function() {
         let feed_entry;
 
         beforeEach(function(done) {
-            loadFeed(0,function(){
-                done();
+            loadFeed(0,function(){ 
+                done(); //using asynchronous doen() function to ensure loadfeed is complete.
             });
             
         });    
        
-        feed_entry=document.querySelector('.feed').getElementsByClassName('entry');
+        feed_entry=document.querySelector('.feed').getElementsByClassName('entry'); //Querying the 'entry' element in 'feed' container.
         
         it('atleat one entry in feed',function(done) {
             
-            expect(feed_entry.length).toBeGreaterThan(0);
+            expect(feed_entry.length).toBeGreaterThan(0); //Ensuring that a '.entry' element exists after 'loadFeed' function completes.
             done();
         });
         
@@ -127,9 +125,9 @@ $(function() {
         let first_feed,sec_feed;
         beforeEach(function(done) {
             loadFeed(1,function(){
-                first_feed = document.querySelector('.header-title').innerHTML;
+                first_feed = document.querySelector('.header-title').innerHTML; //Querying title of the first feed.
                 loadFeed(2,function(){
-                    sec_feed = document.querySelector('.header-title').innerHTML;
+                    sec_feed = document.querySelector('.header-title').innerHTML; //Querying title of the second feed.
                     done();
                 });
                 
@@ -140,7 +138,7 @@ $(function() {
 
         it('feeds not equal',function(done) {
             
-            expect(first_feed).not.toEqual(sec_feed);
+            expect(first_feed).not.toEqual(sec_feed); //Testing to ensure that new feed is different from the old one by matching titles of both fields.
             done();           
         });
 
